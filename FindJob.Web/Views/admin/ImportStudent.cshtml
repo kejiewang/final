@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "ImportStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 管理员</h3>
+        <div class="row mt">
+            <div class="col-lg-12">
+                <div class="content-panel">
+                    <h4><i class="fa fa-angle-right"></i>管理员 </h4>
+                    <section id="unseen">
+                        <form class="form-horizontal style-form" action="/admin/ImportStudentSave" method="post" enctype="multipart/form-data">
+
+                            
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">学生导入</label>
+                                <div class="col-sm-10">
+                                    <input type="file" class="form-control" id="StudentXlsx" name="StudentXlsx">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <div class="col-sm-10">
+
+                                    <input type="submit" name="Save" value="提交 " class="btn btn-primary btn-lg" />
+                                </div>
+                            </div>
+
+                        </form>
+                    </section>
+                </div><!-- /content-panel -->
+            </div><!-- /col-lg-4 -->
+        </div><!-- /row -->
+    </section>
+</section><!DOCTYPE html>
+
+
+
+
+
+
+

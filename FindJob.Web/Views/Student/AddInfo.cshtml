@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "AddInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 学生信息</h3>
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="row mt">
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <h4 class="mb"><i class="fa fa-angle-right"></i> 完善学生信息</h4>
+                    <form class="form-horizontal style-form" action="/Student/AddInfoSave" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">学生名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Name" name="Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">电话</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Phone" name="Phone">
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">学校</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="School" name="School">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">班级</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Class" name="Class">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">专业</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Major" name="Major">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">性别</label>
+                            <div class="col-sm-10">
+                                <select id="Gender" class="selectpicker show-tick form-control" name="Gender">
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">身份证号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="IdCard" name="IdCard">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">意向工资</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="IntentSalary" name="IntentSalary">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">意向工作地点</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="IntentPlace" name="IntentPlace">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">意向职位</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="IntentJob" name="IntentJob">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">个人简介</label>
+                            <div class="col-sm-10">
+                                @*<input type="text" class="form-control" id="Introduction" name="introduction">*@
+                                <textarea name="Experience" id="Experience" cols="100" rows="10" warp="virtual"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <div class="col-sm-10">
+
+                                <input type="submit" name="Save" value="提交 " class="btn btn-primary btn-lg" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- col-lg-12-->
+        </div>
+        <!-- /row -->
+
+    </section>
+</section>
+

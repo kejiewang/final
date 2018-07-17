@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<FindJob.Model.T_Base_Job> lst = ViewBag.lst;
+    int count = ViewBag.count;
+    int pageSize = ViewBag.PageSize;
+    int MaxPageIndex = ViewBag.MaxPageIndex;
+}
+
+
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 职位列表</h3>
+        <div class="row mt">
+            <div class="col-lg-12">
+                <div class="content-panel">
+                    <h4><i class="fa fa-angle-right" id="pageNum">第 1 页</i></h4>
+                    <button id="btn_add" type="button" class="btn btn-default" onclick="addJob()">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增职业
+                    </button>
+                    <section id="unseen">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">查询</div>
+                            <div class="panel-body">
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label for="exampleInputName2">职业Id</label>
+                                        <input type="text" class="form-control" id="txtId" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail2">职业名</label>
+                                        <input type="text" class="form-control" id="txtName" placeholder="">
+                                    </div>
+                                    <button type="submit" class="btn btn-default btn-info right" onclick="search()"> 查询</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>职业名</th>
+                                    <th>备注</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="bodyContent"></tbody>
+
+
+
+                        </table>
+                        <div class="btn-group" id="pageBtnGroup">
+
+                            @{
+                                for (int i = 1; i <= Math.Ceiling(count * 1.0 / pageSize); i++)
+                                {
+                                    if (i == 1)
+                                    {
+                                        <button type="button" class="btn btn-default active" onclick="getList(@i)">@i</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-default" onclick="getList(@i)">@i</button>
+                                    }
+                                    if (i >= MaxPageIndex)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+
+                        </div>
+
+                        @*<div class="btn-group" id="pageBtnGroup">
+                                <button type="button" class="btn btn-default" onclick="getList(1)">1</button>
+                                <button type="button" class="btn btn-default" onclick="getList(2)">2</button>
+                                <button type="button" class="btn btn-default" onclick="getList(3)">3</button>
+                                <button type="button" class="btn btn-default" onclick="getList(4)">4</button>
+                                <button type="button" class="btn btn-default" onclick="getList(5)">5</button>
+                            </div>*@
+
+                    </section>
+                </div><!-- /content-panel -->
+            </div><!-- /col-lg-4 -->
+        </div><!-- /row -->
+
+    </section>
+
+</section>
+
+
+
+
+
+@section js{
+    <script>
+        function addJob() {
+
+            location.href = "/job/add";
+        }
+
+    function jobDelete(Id) {
+        //var http = new XMLHttpRequest();
+        var result = window.confirm("是否确定删除");
+        if (result == 1) {
+            $.ajax({
+                url: "/job/DeleteJson",
+                data: "Id=" + Id,
+                type: "post",
+                dataType: "json",
+                success: function (result) {
+                    //  alert(result.Content);
+                    $("#tr_" + Id).remove();
+                },
+                error: function () {
+                    alert("出现错误");
+                }
+            });
+        }
+        else {
+        }
+    }
+
+
+        var _currentPage = 0;
+
+        function search() {
+            getList(_currentPage);
+        }
+
+        function getList(currentPage) {
+            console.log(currentPage);
+            _currentPage = currentPage;
+            var Id = $("#txtId").val();
+            var Name = $("#txtName").val();
+
+        $.ajax({
+            url: "/job/GetList",
+            data: "currentPage=" + currentPage + "&Id=" + Id + "&JobName=" + Name,
+            type: "post",
+
+            success: function (result) {
+                console.log(result);
+                var html = "";
+                for (var i = 0; i < result.length; i++) {
+                    html += "<tr id=\"tr_" + result[i].Id + "\">";
+                    html += " <td>" + result[i].Id + "</td>"
+                    html += "<td>" + result[i].JobName + "</td>";
+                    html += "<td>" + result[i].Memo + "</td>";
+                    html += "<td>";
+                    html += "  <a href=\"javascript:jobDelete(" + result[i].Id + ")\">删除</a>";
+                    html += "  <a href=\"/job/Update?Id=" + result[i].Id + "\">编辑</a>";
+                    html += "</td>";
+                    html += "</tr>";
+                }
+
+                //document.getElementById("bodyContent").innerHTML = html;
+
+                 var btnGroupHtml = "";
+                   var j=1;
+                    var PageIndex=(currentPage-2>1?currentPage-2:1);//控制选中页按钮所在位置
+                    while(j<=(@MaxPageIndex) && PageIndex<= (@Math.Ceiling(count * 1.0 / pageSize)))
+                    {
+                        if(PageIndex==currentPage)
+                        {
+                            btnGroupHtml+="<button type=\"button\" class=\"btn btn-default active \" onclick=\"getList("+PageIndex +")\">"+PageIndex +"</button>";
+                        }
+                        else
+                        {
+                            btnGroupHtml+="<button type=\"button\" class=\"btn btn-default \" onclick=\"getList("+PageIndex +")\">"+PageIndex +"</button>";
+                        }
+                        j++;
+                        PageIndex++;
+
+                    }
+                //$("#bodyContent").html(html);
+                document.getElementById("pageNum").textContent = "第 " + currentPage + " 页";
+                document.getElementById("bodyContent").innerHTML = html;
+                document.getElementById("pageBtnGroup").innerHTML=btnGroupHtml;
+
+            },
+            error: function () {
+                console.log(error);
+            }
+        });
+    }
+        getList(1);
+    </script>
+
+}
+
