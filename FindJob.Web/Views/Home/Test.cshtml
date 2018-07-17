@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+</head>
+<body>
+   
+        <button id="test" value="hello">hello</button>
+         
+</body>
+</html>
+<script src="~/assets/js/jquery-1.8.3.min.js"></script>
+<script>
+    $("#test").click(function () {
+        //window.alert("hello");
+        var User = { LoginName: "koje" };
+        $.ajax({
+
+            type: "POST",
+            url: "/home/testget",
+            data: {
+                item:User
+            },
+            dataType: 'JSON',
+            success: function () {
+                //显示删除成功
+                
+            }
+
+        })
+
+    });
+
+</script>

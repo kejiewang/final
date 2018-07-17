@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "LookForJobIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<FindJob.Model.T_Base_Enterprise> AllList = ViewBag.AllList;
+
+}
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i>求职市场</h3>
+        <div class="row mt">
+            <div class="col-lg-12">
+
+
+
+                @foreach (FindJob.Model.T_Base_Enterprise item in AllList)
+                {
+                    <div class="content-panel">
+
+                        <div class="content-panel">
+                            <h4><i class="fa fa-angle-right"></i>@item.Name</h4>
+                            <form class="form-inline" role="form">
+                                <div class="panel-body">
+                                    <div id="hero-graph" class="graph">
+                                        @foreach (FindJob.Model.T_Relation_RecruitInfo job in item.JobInfoList)
+                                        {
+
+                                            @*<label type="text" class="form-control" id="exampleInputEmail2" placeholder="@job.JobName;" disabled="disabled" />*@
+                                            <Label style="border:2px solid black;font-size:20px;margin-right:20px;">
+                                                <a href="/student/jobindex?epid=@item.Id&jobname=@job.JobName">@job.JobName</a>
+                                            </Label>
+                                        }
+
+
+                                    </div>
+                                </div>
+                             </form>
+                        </div>
+                    </div>
+
+
+
+                  
+
+                    @*<div class="media">
+                <div class="pull-left">
+                    <a href="#">
+                        <img class="media-object" style="width:64px;height:64px;margin-right:20px" src="../assets/img/企业.jpg" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">招聘岗位：@item.Job.JobName</h4>
+                    @item.Requirement
+                </div>
+                <div class="panel-footer"></div>
+            </div>*@
+
+                }
+
+
+
+
+
+
+            </div>
+        </div>
+        </section>
+    </section>
+

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "EISubmitIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 学生就业信息填写</h3>
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="row mt">
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <h4 class="mb"><i class="fa fa-angle-right"></i> 工作信息填写</h4>
+                    <form class="form-horizontal style-form" action="EISubmitSave" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">单位地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Place" name="Place">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">职位名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Name" name="Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">薪资</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Salary" name="Salary">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">是否与专业相关</label>
+                            <div class="col-sm-10">
+                                <select id="AssociateMajor" class="selectpicker show-tick form-control" name="AssociateMajor">
+                                    <option value=true>是</option>
+                                    <option value=false>否</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">三方协议</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" id="SanFang" name="SanFang">
+                            </div>
+                        </div>
+                       
+
+
+                        <div class="form-group">
+
+                            <div class="col-sm-10">
+
+                                <input type="submit" name="Save" value="提交 " class="btn btn-primary btn-lg" onclick="confirm()"/>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div><!-- col-lg-12-->
+        </div>
+        <!-- /row -->
+
+    </section>
+</section>
+<script>
+    function confirm() {
+        window.alert("确认提交？");
+      
+    }
+</script>
